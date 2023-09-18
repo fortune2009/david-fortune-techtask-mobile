@@ -26,17 +26,24 @@ class IngredientsScreen extends StatelessWidget {
                 itemCount: ingredientsList.length,
                 itemBuilder: (context, index) {
                   final ingredients = ingredientsList[index];
-                  return ListTile(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => RecipesScreen(),
-                        ),
-                      );
-                    },
-                    title: Text(ingredients.title),
-                    subtitle: Text("Use by: ${DateFormat('dd MMMM yyyy').format(ingredients.useBy)}"),
+                  return Container(
+                    margin: EdgeInsets.only(bottom: 10, left: 10, right: 10),
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.black26, width: 1),
+                      borderRadius: BorderRadius.circular(8)
+                    ),
+                    child: ListTile(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => RecipesScreen(),
+                          ),
+                        );
+                      },
+                      title: Text(ingredients.title, style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),),
+                      subtitle: Text("Use by: ${DateFormat('dd MMMM yyyy').format(ingredients.useBy)}"),
+                    ),
                   );
                 },
               ),
