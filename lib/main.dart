@@ -5,13 +5,15 @@ import 'package:tech_task/providers/recipe_provider.dart';
 import 'package:tech_task/screens/ingredients.dart';
 import 'package:tech_task/screens/lunch_date.dart';
 import 'package:tech_task/screens/recipes.dart';
+import 'package:tech_task/services/api_services.dart';
+import 'package:tech_task/services/interface_api_services.dart';
 
 void main() {
   runApp(
     MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) => RecipeProvider()),
-        ChangeNotifierProvider(create: (_) => IngredientProvider()),
+        ChangeNotifierProvider(create: (_) => RecipeProvider(apiServices: ApiServices())),
+        ChangeNotifierProvider(create: (_) => IngredientProvider(apiServices: ApiServices())),
       ],
       child: MyApp(),
     ),

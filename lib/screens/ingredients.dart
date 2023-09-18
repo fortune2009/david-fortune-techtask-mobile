@@ -34,12 +34,21 @@ class IngredientsScreen extends StatelessWidget {
                     ),
                     child: ListTile(
                       onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => RecipesScreen(),
-                          ),
-                        );
+                        if(ingredients.useBy.year < 2020) {
+                          final snackBar = SnackBar(backgroundColor: Colors.black,
+                            content: Text('This ingredient has past its use by date'),
+                            duration: Duration(seconds: 3), // You can customize the duration
+                          );
+
+                          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                        } else {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => RecipesScreen(),
+                            ),
+                          );
+                        }
                       },
                       title: Text(ingredients.title, style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),),
                       subtitle: Text("Use by: ${DateFormat('dd MMMM yyyy').format(ingredients.useBy)}"),
